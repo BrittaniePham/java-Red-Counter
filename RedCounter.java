@@ -27,6 +27,8 @@ public class RedCounter extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<Color> colors = new ArrayList<>();
+	private int counter;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -62,7 +64,7 @@ public class RedCounter extends JFrame {
 		lblBrittaniesGui.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(lblBrittaniesGui, BorderLayout.SOUTH);
 		
-		JLabel lblNewLabel = new JLabel("Red Counter: ");
+		lblNewLabel = new JLabel("Red Counter: " + counter);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(Color.LIGHT_GRAY);
 		lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 20));
@@ -88,12 +90,15 @@ public class RedCounter extends JFrame {
 				Random rand = new Random();
 				int num = rand.nextInt(5);
 				Color color = colors.get(num);
-				if(color.equals(btnNewButton.getBackground())) {
+				while(color.equals(btnNewButton.getBackground())) {
 					num = rand.nextInt(5);
 					color = colors.get(num);
-					btnNewButton.setBackground(color);
 				}
 				btnNewButton.setBackground(color);
+				if(color.equals(Color.RED)) {
+					counter++;
+					lblNewLabel.setText("Red Counter: " + counter);
+				}
 			}
 		});
 	}
