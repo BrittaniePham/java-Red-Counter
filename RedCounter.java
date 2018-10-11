@@ -17,10 +17,16 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
+import java.awt.event.ActionEvent;
 
 public class RedCounter extends JFrame {
 
 	private JPanel contentPane;
+	private ArrayList<Color> colors = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -43,11 +49,52 @@ public class RedCounter extends JFrame {
 	 */
 	public RedCounter() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 200);
 		contentPane = new JPanel();
 		contentPane.setPreferredSize(new Dimension(500, 200));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblBrittaniesGui = new JLabel("Brittanie's GUI");
+		lblBrittaniesGui.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBrittaniesGui.setBorder(new EmptyBorder(7, 0, 7, 0));
+		lblBrittaniesGui.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		contentPane.add(lblBrittaniesGui, BorderLayout.SOUTH);
+		
+		JLabel lblNewLabel = new JLabel("Red Counter: ");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(Color.LIGHT_GRAY);
+		lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		lblNewLabel.setBorder(new EmptyBorder(0, 50, 0, 50));
+		contentPane.add(lblNewLabel, BorderLayout.WEST);
+		
+		colors.add(Color.RED);
+		colors.add(Color.BLUE);
+		colors.add(Color.GREEN);
+		colors.add(Color.ORANGE);
+		colors.add(Color.MAGENTA);
+		
+		JButton btnNewButton = new JButton("Click Me");
+		btnNewButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		btnNewButton.setBackground(Color.BLUE);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setOpaque(true);
+		btnNewButton.setBorder(new EmptyBorder(0, 70, 0, 70));
+		contentPane.add(btnNewButton, BorderLayout.EAST);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Random rand = new Random();
+				int num = rand.nextInt(5);
+				Color color = colors.get(num);
+				if(color.equals(btnNewButton.getBackground())) {
+					num = rand.nextInt(5);
+					color = colors.get(num);
+					btnNewButton.setBackground(color);
+				}
+				btnNewButton.setBackground(color);
+			}
+		});
 	}
 }
