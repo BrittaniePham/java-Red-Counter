@@ -1,3 +1,9 @@
+/*
+ * Author: Brittanie Pham
+ * A06 Red Counter
+ * CSIS 1410
+ */
+
 package a06_red_counter;
 
 import java.awt.BorderLayout;
@@ -23,6 +29,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 
+/**
+ * public class RedCounter is a Jframe that makes a GUI
+ * @author Brittanie Pham
+ *
+ */
 public class RedCounter extends JFrame {
 
 	private JPanel contentPane;
@@ -31,7 +42,7 @@ public class RedCounter extends JFrame {
 	private JLabel lblNewLabel;
 
 	/**
-	 * Launch the application.
+	 * Launches the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,7 +58,7 @@ public class RedCounter extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Constructor that creates the frame
 	 */
 	public RedCounter() {
 		makeWindow();
@@ -58,6 +69,12 @@ public class RedCounter extends JFrame {
 		buttonEventHandler(btnNewButton);
 	}
 
+	/**
+	 * button with an event handler on click that changes the color of the button's background every time
+	 * the button also changes the Red Counter label with the 
+	 * amount of times the color red appears.
+	 * @param btnNewButton
+	 */
 	private void buttonEventHandler(JButton btnNewButton) {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,6 +94,11 @@ public class RedCounter extends JFrame {
 		});
 	}
 
+	/**
+	 * creation of JButton and styling of the button by
+	 * setting font, background, foreground, opaqueness, and border
+	 * @return button created
+	 */
 	private JButton makeButton() {
 		JButton btnNewButton = new JButton("Click Me");
 		btnNewButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
@@ -88,6 +110,9 @@ public class RedCounter extends JFrame {
 		return btnNewButton;
 	}
 
+	/**
+	 * adds all possible color options in an ArrayList for the button (btnNewButton) to be able to change to
+	 */
 	private void possibleColors() {
 		colors.add(Color.RED);
 		colors.add(Color.BLUE);
@@ -96,6 +121,10 @@ public class RedCounter extends JFrame {
 		colors.add(Color.MAGENTA);
 	}
 
+	/**
+	 * creates a JLabel that displays the amount of times the color red appears on the button
+	 * label gets set to opaque, changes background to gray, gets a new font, and border change.
+	 */
 	private void makeCounterLabel() {
 		lblNewLabel = new JLabel("Red Counter: " + counter);
 		lblNewLabel.setOpaque(true);
@@ -105,6 +134,10 @@ public class RedCounter extends JFrame {
 		contentPane.add(lblNewLabel, BorderLayout.WEST);
 	}
 
+	/**
+	 * creates a new JLabel that gets set to the center, has padding on its borders added, and changes the font. 
+	 * This label gets put in the south of Border Layout
+	 */
 	private void brittsGuiLabel() {
 		JLabel lblBrittaniesGui = new JLabel("Brittanie's GUI");
 		lblBrittaniesGui.setHorizontalAlignment(SwingConstants.CENTER);
@@ -113,6 +146,9 @@ public class RedCounter extends JFrame {
 		contentPane.add(lblBrittaniesGui, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * creates a JPanel with a border, a preferredSize, and sets a layout
+	 */
 	private void makeWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 200);
